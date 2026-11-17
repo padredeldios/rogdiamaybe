@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ρογδιά — Παραδοσιακό Καφενείο · Μεζεδοπωλείο, Καλάμι Χανιά</title>
+<meta name="description" content="Ρογδιά — παραδοσιακό καφενείο και μεζεδοπωλείο στο Καλάμι Χανίων. Καφές, πρωινό, μεζέδες και κρασί με θέα στη θάλασσα.">
+<link rel="icon" type="image/png" href="images/logo-256.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wght@400;600&family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#f6f1ea; --paper:#fffdf9; --ink:#1e1d1c; --muted:#6f6a64;
+    --pom:#8e1b2c; --pom-dark:#6a1220; --leaf:#2f5d3a; --line:#e6ddd1;
+    --serif:"Noto Serif Display",Georgia,serif;
+    --sans:"Noto Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+
+  /* top bar */
+  .topbar{background:var(--ink);color:#e9e3da;font-size:.8rem;padding:7px 20px;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;text-align:center}
+  .topbar a{text-decoration:none;color:#fff;font-weight:600}
+
+  /* header */
+  header{position:sticky;top:0;z-index:20;background:rgba(246,241,234,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .head-in{max-width:1180px;margin:0 auto;padding:8px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+  .brand img{width:52px;height:52px;border-radius:50%;object-fit:cover;box-shadow:0 0 0 1px var(--line)}
+  .brand span{font-family:var(--serif);font-size:1.5rem;font-weight:600;color:var(--pom);letter-spacing:.02em}
+  .head-right{display:flex;align-items:center;gap:18px}
+  .mainnav{display:flex;gap:22px;align-items:center}
+  .mainnav a{text-decoration:none;font-size:.92rem;color:var(--ink)}
+  .mainnav a:hover{color:var(--pom)}
+
+  /* language switcher — prominent */
+  .langs{display:flex;align-items:center;gap:2px;background:#fff;border:1.5px solid var(--pom);border-radius:999px;padding:3px}
+  .langs svg{width:18px;height:18px;margin:0 4px 0 6px;color:var(--pom);flex:none}
+  .langs button{background:none;border:0;color:var(--ink);font:inherit;font-size:.85rem;font-weight:700;padding:6px 11px;border-radius:999px;cursor:pointer;letter-spacing:.04em;line-height:1}
+  .langs button:hover{background:var(--cream)}
+  .langs button.active{background:var(--pom);color:#fff}
+
+  .btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.9rem;padding:11px 22px;border-radius:999px;border:1.5px solid var(--pom);background:var(--pom);color:#fff;cursor:pointer;transition:.2s}
+  .btn:hover{background:var(--pom-dark);border-color:var(--pom-dark)}
+  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.8)}
+  .btn.ghost:hover{background:rgba(255,255,255,.12)}
+  .btn.outline{background:transparent;color:var(--pom)}
+  .btn.outline:hover{background:var(--pom);color:#fff}
+  @media (max-width:900px){.mainnav{display:none}}
+  @media (max-width:520px){.brand span{display:none}.brand img{width:46px;height:46px}.langs button{padding:6px 9px;font-size:.8rem}.langs svg{display:none}}
+
+  /* photo slots */
+  .ph{position:relative;overflow:hidden;background:linear-gradient(135deg,#c9b8a3,#8a9a9c)}
+  .ph .lbl{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:10px;color:rgba(255,255,255,.92);font-size:.85rem}
+
+  html[lang=el] .eyebrow,html[lang=el] .space-txt .time{text-transform:none}
+  /* hero */
+  .hero{position:relative;min-height:min(88vh,780px);display:flex;align-items:flex-end;color:#fff}
+  .hero .ph{position:absolute;inset:0}
+  .hero .ph img{object-position:center 60%}
+  @media (max-width:600px){.hero .ph img{object-position:42% 60%}.topbar{gap:4px 14px;font-size:.75rem}}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.6),rgba(0,0,0,0) 60%),linear-gradient(to right,rgba(0,0,0,.4),rgba(0,0,0,0) 55%)}
+  .hero-in{position:relative;z-index:2;max-width:1180px;width:100%;margin:0 auto;padding:0 20px 70px}
+  .eyebrow{font-size:.78rem;letter-spacing:.22em;text-transform:uppercase;opacity:.95}
+  .hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4.6rem);line-height:1.08;margin:14px 0 18px;max-width:14ch}
+  .hero p{max-width:46ch;opacity:.95;font-size:1.05rem}
+  .hero .cta{display:flex;gap:12px;margin-top:28px;flex-wrap:wrap}
+
+  /* generic section */
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+  .sec{padding:90px 0}
+  .sec-title{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,4vw,2.8rem);line-height:1.15;color:var(--ink)}
+  .sec-sub{color:var(--muted);margin-top:10px;max-width:56ch}
+  .center{text-align:center}.center .sec-sub{margin-left:auto;margin-right:auto}
+
+  /* intro */
+  .intro{background:var(--paper);text-align:center}
+  .intro p.big{font-family:var(--serif);font-size:clamp(1.3rem,2.6vw,1.75rem);line-height:1.5;max-width:34ch;margin:0 auto;color:var(--ink)}
+  .intro .logo-big{width:150px;height:150px;margin:0 auto 26px;border-radius:50%;overflow:hidden}
+
+  /* spaces */
+  .space{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:center;padding:60px 0}
+  .space.rev .space-txt{order:-1}
+  .space-txt .time{display:inline-block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--pom);border:1px solid var(--pom);border-radius:999px;padding:4px 12px;margin-bottom:16px}
+  .space-txt h3{font-family:var(--serif);font-weight:400;font-size:2rem;line-height:1.2;margin-bottom:14px}
+  .space-txt p{color:var(--muted)}
+  .strip{display:grid;grid-template-columns:2fr 1fr;grid-template-rows:1fr 1fr;gap:10px;height:460px}
+  .strip .ph{border-radius:6px}
+  .strip .ph:first-child{grid-row:1/3}
+  @media (max-width:860px){.space{grid-template-columns:1fr;gap:26px;padding:40px 0}.space.rev .space-txt{order:0}.strip{height:340px}}
+
+  /* menu */
+  .menu-sec{background:var(--paper)}
+  .tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:34px 0 30px}
+  .tabs button{font:inherit;font-size:.9rem;background:none;border:1px solid var(--line);color:var(--ink);padding:8px 18px;border-radius:999px;cursor:pointer}
+  .tabs button.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .menu-list{max-width:760px;margin:0 auto}
+  .mi{display:flex;justify-content:space-between;gap:20px;padding:16px 0;border-bottom:1px dotted #cfc4b5}
+  .mi .n{font-weight:600}
+  .mi .d{color:var(--muted);font-size:.9rem;margin-top:2px}
+  .mi .p{font-family:var(--serif);font-size:1.15rem;white-space:nowrap;color:var(--pom)}
+  .tag{display:inline-block;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;background:var(--cream);border:1px solid var(--line);border-radius:10px;padding:1px 8px;margin:6px 4px 0 0;color:var(--muted)}
+  .menu-note{text-align:center;color:var(--muted);font-size:.82rem;margin-top:26px}
+
+  /* booking */
+  .book{background:var(--pom);color:#fff;text-align:center}
+  .book .sec-title{color:#fff}
+  .book .sec-sub{color:rgba(255,255,255,.85)}
+  .book .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+  .book .btn{background:#fff;color:var(--pom);border-color:#fff}
+  .book .btn:hover{background:var(--cream)}
+  .book .num{margin-top:18px;font-size:.95rem;opacity:.9;letter-spacing:.04em}
+
+  /* location */
+  .loc{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:stretch}
+  .loc .ph{border-radius:6px;min-height:420px}
+  .hours{margin-top:24px;border-top:1px solid var(--line)}
+  .hours div{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);font-size:.95rem}
+  .loc address{font-style:normal;margin-top:16px;color:var(--muted)}
+  .loc .btn{margin-top:26px}
+  @media (max-width:860px){.loc{grid-template-columns:1fr}}
+
+  /* footer */
+  footer{background:var(--ink);color:#cfc8be;padding:50px 20px 34px;text-align:center;font-size:.88rem}
+  footer .flogo{width:96px;height:96px;margin:0 auto 16px;border-radius:50%;overflow:hidden}
+  .social{display:flex;gap:18px;justify-content:center;margin:18px 0}
+  .social a{display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;opacity:.9;border:1px solid rgba(255,255,255,.35);border-radius:999px;padding:8px 16px}
+  .social a:hover{opacity:1;border-color:#fff}
+  .social svg{width:18px;height:18px}
+  footer small{display:block;margin-top:20px;opacity:.6}
+</style>
+</head>
+<body>
+
+<script>
+/* =====================================================================
+   ΡΥΘΜΙΣΕΙΣ — ΟΛΑ ΤΑ ΣΤΟΙΧΕΙΑ ΤΟΥ ΜΑΓΑΖΙΟΥ ΑΛΛΑΖΟΥΝ ΜΟΝΟ ΕΔΩ
+   Φωτογραφίες: στον φάκελο images/. Αν src είναι "", δείχνει placeholder.
+   ===================================================================== */
+const SITE = {
+  name: "Ρογδιά",
+  phone: "697 257 7160",
+  whatsapp: "",                       // ← κινητό χωρίς + και κενά (π.χ. 306972577160) αν έχουν WhatsApp
+  address: { el:"Καλάμι, Χανιά 730 03", en:"Kalami, Chania 730 03", de:"Kalami, Chania 730 03", fr:"Kalami, La Canée 730 03" },
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Kalami%2C%20Chani%C3%A1%2C%20Greece%20730%2003",
+  instagram: "https://www.instagram.com/rogdia_/",
+  logo: "images/logo.jpg",
+  languages: ["el","en","de","fr"],
+  defaultLang: "el",
+  currency: "€",
+  hero: { src:"images/hero.jpg", label:"Ρογδιά" },
+  locationPhoto: { src:"images/sign.jpg", label:"Ρογδιά καφενείον" },
+  hours: [   // ← ΕΝΔΕΙΚΤΙΚΟ ωράριο, να επιβεβαιωθεί
+    { d:{el:"Δευτέρα – Πέμπτη",en:"Monday – Thursday",de:"Montag – Donnerstag",fr:"Lundi – Jeudi"}, h:"08:00 – 00:00" },
+    { d:{el:"Παρασκευή – Σάββατο",en:"Friday – Saturday",de:"Freitag – Samstag",fr:"Vendredi – Samedi"}, h:"08:00 – 01:00" },
+    { d:{el:"Κυριακή",en:"Sunday",de:"Sonntag",fr:"Dimanche"}, h:"09:00 – 00:00" }
+  ]
+};
+
+const SPACES = [
+  {
+    time: { el:"Πρωί", en:"Morning", de:"Morgens", fr:"Le matin" },
+    title:{ el:"Καφές & πρωινό στο καφενείο", en:"Coffee & breakfast at the kafeneio", de:"Kaffee & Frühstück im Kafeneio", fr:"Café & petit-déjeuner au kafeneio" },
+    text: { el:"Ελληνικός καφές, φρέσκοι χυμοί και πρωινό με ντόπια προϊόντα, στην αυλή με τις βουκαμβίλιες.",
+            en:"Greek coffee, fresh juices and breakfast made with local produce, in our courtyard under the bougainvillea.",
+            de:"Griechischer Kaffee, frische Säfte und Frühstück aus regionalen Produkten – im Innenhof unter Bougainvillea.",
+            fr:"Café grec, jus frais et petit-déjeuner aux produits locaux, dans notre cour sous les bougainvilliers." },
+    photos:[ {src:"images/breakfast.jpg",label:"Πρωινό"}, {src:"images/courtyard.jpg",label:"Αυλή"}, {src:"images/pomegranate.jpg",label:"Ρόδι"} ]
+  },
+  {
+    time: { el:"Μεσημέρι & βράδυ", en:"Lunch & dinner", de:"Mittag & Abend", fr:"Midi & soir" },
+    title:{ el:"Μεζέδες με κρητική ψυχή", en:"Meze with a Cretan soul", de:"Meze mit kretischer Seele", fr:"Mezzés à l'âme crétoise" },
+    text: { el:"Πιάτα ημέρας, μεζέδες για μοίρασμα και γλυκά του σπιτιού, με κρητική μπίρα, ρακή ή κρασί.",
+            en:"Dishes of the day, meze to share and homemade desserts, with Cretan beer, raki or wine.",
+            de:"Tagesgerichte, Meze zum Teilen und hausgemachte Desserts – mit kretischem Bier, Raki oder Wein.",
+            fr:"Plats du jour, mezzés à partager et desserts maison, avec bière crétoise, raki ou vin." },
+    photos:[ {src:"images/meze.jpg",label:"Μεζέδες"}, {src:"images/grill.jpg",label:"Ψητά"}, {src:"images/dessert.jpg",label:"Γλυκό"} ]
+  },
+  {
+    time: { el:"Από τη δύση", en:"From sunset", de:"Ab Sonnenuntergang", fr:"Dès le coucher du soleil" },
+    title:{ el:"Ηλιοβασίλεμα με θέα τη θάλασσα", en:"Sunsets over the sea", de:"Sonnenuntergang mit Meerblick", fr:"Coucher de soleil face à la mer" },
+    text: { el:"Ένα ποτήρι κρασί στη βεράντα όσο πέφτει ο ήλιος, και τον χειμώνα δίπλα στο τζάκι.",
+            en:"A glass of wine on the terrace as the sun goes down, and by the fireplace in winter.",
+            de:"Ein Glas Wein auf der Terrasse bei Sonnenuntergang – und im Winter am Kamin.",
+            fr:"Un verre de vin sur la terrasse au coucher du soleil, et au coin du feu en hiver." },
+    photos:[ {src:"images/wine-view.jpg",label:"Κρασί με θέα"}, {src:"images/sunset-tables.jpg",label:"Βεράντα"}, {src:"images/interior.jpg",label:"Τζάκι"} ]
+  }
+];
+
+/* ΜΕΝΟΥ — DEMO δεδομένα, αντικατάστησέ τα με το πραγματικό μενού */
+const MENU = [
+  { id:"coffee", title:{el:"Καφές",en:"Coffee",de:"Kaffee",fr:"Café"}, items:[
+    { name:{el:"Ελληνικός καφές",en:"Greek coffee",de:"Griechischer Kaffee",fr:"Café grec"}, price:2.5 },
+    { name:{el:"Freddo espresso",en:"Freddo espresso",de:"Freddo Espresso",fr:"Freddo espresso"}, price:3.5 },
+    { name:{el:"Freddo cappuccino",en:"Freddo cappuccino",de:"Freddo Cappuccino",fr:"Freddo cappuccino"}, price:4 },
+    { name:{el:"Φρέσκος χυμός πορτοκάλι",en:"Fresh orange juice",de:"Frischer Orangensaft",fr:"Jus d'orange frais"}, price:4.5 }
+  ]},
+  { id:"breakfast", title:{el:"Πρωινό",en:"Breakfast",de:"Frühstück",fr:"Petit-déjeuner"}, items:[
+    { name:{el:"Κρητικό πρωινό",en:"Cretan breakfast",de:"Kretisches Frühstück",fr:"Petit-déjeuner crétois"},
+      desc:{el:"Αυγά, ντομάτα, ελιές, γραβιέρα, παξιμάδι, μέλι",en:"Eggs, tomato, olives, graviera, rusk, honey",de:"Eier, Tomate, Oliven, Graviera, Zwieback, Honig",fr:"Œufs, tomate, olives, graviera, biscotte, miel"}, price:11, tags:["veg"] },
+    { name:{el:"Γιαούρτι με μέλι & ρόδι",en:"Yogurt with honey & pomegranate",de:"Joghurt mit Honig & Granatapfel",fr:"Yaourt au miel & grenade"}, price:6.5, tags:["veg"] },
+    { name:{el:"Χούμους με αυγά ποσέ",en:"Hummus with poached eggs",de:"Hummus mit pochierten Eiern",fr:"Houmous aux œufs pochés"},
+      desc:{el:"Ταχίνι, κουκουνάρι, ρόδι, ψωμί",en:"Tahini, pine nuts, pomegranate, bread",de:"Tahini, Pinienkerne, Granatapfel, Brot",fr:"Tahini, pignons, grenade, pain"}, price:9.5, tags:["veg"] }
+  ]},
+  { id:"meze", title:{el:"Μεζέδες",en:"Meze",de:"Meze",fr:"Mezzés"}, items:[
+    { name:{el:"Ντάκος",en:"Dakos",de:"Dakos",fr:"Dakos"},
+      desc:{el:"Παξιμάδι, ντομάτα, μυζήθρα, κρίταμο",en:"Barley rusk, tomato, mizithra, rock samphire",de:"Gerstenzwieback, Tomate, Mizithra, Meerfenchel",fr:"Biscotte d'orge, tomate, mizithra, criste-marine"}, price:8.5, tags:["veg"] },
+    { name:{el:"Τζατζίκι",en:"Tzatziki",de:"Tzatziki",fr:"Tzatziki"}, price:5, tags:["veg"] },
+    { name:{el:"Κεφτεδάκια",en:"Meatballs",de:"Fleischbällchen",fr:"Boulettes"}, price:8 },
+    { name:{el:"Καπνιστή πανσέτα",en:"Smoked pork belly",de:"Geräucherter Schweinebauch",fr:"Poitrine de porc fumée"}, price:10 }
+  ]},
+  { id:"mains", title:{el:"Πιάτα ημέρας",en:"Dishes of the day",de:"Tagesgerichte",fr:"Plats du jour"}, items:[
+    { name:{el:"Κοτόπουλο σχάρας με πέστο",en:"Grilled chicken with pesto",de:"Gegrilltes Hähnchen mit Pesto",fr:"Poulet grillé au pesto"}, price:13 },
+    { name:{el:"Χοιρινό αντικρυστό",en:"Antikristo pork",de:"Antikristo-Schwein",fr:"Porc antikristo"}, desc:{el:"Ψημένο αργά, πατάτες φούρνου",en:"Slow-roasted, oven potatoes",de:"Langsam gegart, Ofenkartoffeln",fr:"Rôti lentement, pommes de terre au four"}, price:16 }
+  ]},
+  { id:"drinks", title:{el:"Ποτά",en:"Drinks",de:"Getränke",fr:"Boissons"}, items:[
+    { name:{el:"Ρακή (καραφάκι)",en:"Raki (carafe)",de:"Raki (Karaffe)",fr:"Raki (carafe)"}, price:6 },
+    { name:{el:"Κρητική μπίρα",en:"Cretan beer",de:"Kretisches Bier",fr:"Bière crétoise"}, price:5 },
+    { name:{el:"Ποτήρι κρασί",en:"Glass of wine",de:"Glas Wein",fr:"Verre de vin"}, price:5 },
+    { name:{el:"Ρόδι με λάιμ",en:"Pomegranate & lime",de:"Granatapfel & Limette",fr:"Grenade & citron vert"}, price:8 }
+  ]}
+];
+
+const TAGS = { veg:{el:"Χορτοφαγικό",en:"Vegetarian",de:"Vegetarisch",fr:"Végétarien"}, vegan:{el:"Vegan",en:"Vegan",de:"Vegan",fr:"Végan"} };
+
+const UI = {
+  topline:  {el:"Παραδοσιακό καφενείο · Μεζεδοπωλείο · Καλάμι Χανίων",en:"Traditional kafeneio · Meze bar · Kalami, Chania",de:"Traditionelles Kafeneio · Meze · Kalami, Chania",fr:"Kafeneio traditionnel · Mezzés · Kalami, La Canée"},
+  navSpaces:{el:"Ο χώρος",en:"The place",de:"Der Ort",fr:"Le lieu"},
+  navMenu:  {el:"Μενού",en:"Menu",de:"Speisekarte",fr:"Carte"},
+  navLoc:   {el:"Τοποθεσία",en:"Location",de:"Anfahrt",fr:"Accès"},
+  book:     {el:"Κράτηση",en:"Book a table",de:"Tisch reservieren",fr:"Réserver"},
+  eyebrow:  {el:"Καφενείο · Μεζεδοπωλείο — Καλάμι, Χανιά",en:"Kafeneio · Meze — Kalami, Chania",de:"Kafeneio · Meze — Kalami, Chania",fr:"Kafeneio · Mezzés — Kalami, La Canée"},
+  heroT:    {el:"Καφές, μεζέδες και θέα στη θάλασσα",en:"Coffee, meze and a view of the sea",de:"Kaffee, Meze und Blick aufs Meer",fr:"Café, mezzés et vue sur la mer"},
+  heroP:    {el:"Ένα παραδοσιακό καφενείο στο Καλάμι, για τον πρωινό καφέ, τους μεζέδες του μεσημεριού και το ηλιοβασίλεμα.",en:"A traditional kafeneio in Kalami, for morning coffee, meze at lunch and the sunset.",de:"Ein traditionelles Kafeneio in Kalami – für den Morgenkaffee, Meze am Mittag und den Sonnenuntergang.",fr:"Un kafeneio traditionnel à Kalami, pour le café du matin, les mezzés du midi et le coucher du soleil."},
+  seeMenu:  {el:"Δες το μενού",en:"See the menu",de:"Zur Speisekarte",fr:"Voir la carte"},
+  intro:    {el:"Η ρογδιά, η ροδιά, είναι στην Κρήτη σύμβολο καλοτυχίας και φιλοξενίας. Αυτό θέλουμε να νιώθεις από τη στιγμή που θα κάτσεις.",
+             en:"In Crete the rogdia — the pomegranate tree — is a symbol of good fortune and hospitality. That's how we want you to feel from the moment you sit down.",
+             de:"Auf Kreta ist die Rogdia – der Granatapfelbaum – ein Symbol für Glück und Gastfreundschaft. So sollen Sie sich vom ersten Moment an fühlen.",
+             fr:"En Crète, la rogdia – le grenadier – symbolise la chance et l'hospitalité. C'est ce que nous voulons vous faire ressentir dès que vous vous asseyez."},
+  menuSub:  {el:"Ενδεικτικό μενού, αλλάζει ανάλογα με την εποχή.",en:"Sample menu, it changes with the season.",de:"Beispielkarte, sie wechselt mit der Saison.",fr:"Carte indicative, elle change selon la saison."},
+  vat:      {el:"Οι τιμές περιλαμβάνουν ΦΠΑ. Ενημερώστε μας για τυχόν αλλεργίες.",en:"Prices include VAT. Please tell us about any allergies.",de:"Preise inkl. MwSt. Bitte informieren Sie uns über Allergien.",fr:"Prix TTC. Merci de nous signaler toute allergie."},
+  bookT:    {el:"Κλείσε τραπέζι",en:"Reserve your table",de:"Reservieren Sie Ihren Tisch",fr:"Réservez votre table"},
+  bookP:    {el:"Για κρατήσεις και παρέες, πάρε μας τηλέφωνο.",en:"For reservations and groups, give us a call.",de:"Für Reservierungen und Gruppen rufen Sie uns an.",fr:"Pour réserver ou pour les groupes, appelez-nous."},
+  call:     {el:"Τηλεφώνησε",en:"Call us",de:"Anrufen",fr:"Appeler"},
+  wa:       {el:"WhatsApp",en:"WhatsApp",de:"WhatsApp",fr:"WhatsApp"},
+  locT:     {el:"Θα μας βρεις",en:"Find us",de:"So finden Sie uns",fr:"Nous trouver"},
+  directions:{el:"Οδηγίες στο Google Maps",en:"Directions on Google Maps",de:"Route in Google Maps",fr:"Itinéraire Google Maps"},
+  hoursT:   {el:"Ωράριο",en:"Opening hours",de:"Öffnungszeiten",fr:"Horaires"},
+  langLbl:  {el:"Γλώσσα",en:"Language",de:"Sprache",fr:"Langue"}
+};
+/* ===================================================================== */
+</script>
+
+<div class="topbar">
+  <span data-t="topline"></span>
+  <a id="topPhone"></a>
+</div>
+
+<header>
+  <div class="head-in">
+    <a class="brand" href="#top" aria-label="Ρογδιά">
+      <img class="logo-img" alt="Ρογδιά καφενείον">
+      <span class="site-name"></span>
+    </a>
+    <div class="head-right">
+      <nav class="mainnav">
+        <a href="#spaces" data-t="navSpaces"></a>
+        <a href="#menu" data-t="navMenu"></a>
+        <a href="#location" data-t="navLoc"></a>
+      </nav>
+      <div class="langs" id="langs" role="group"></div>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="ph" id="heroPh"></div>
+  <div class="hero-in">
+    <div class="eyebrow" data-t="eyebrow"></div>
+    <h1 data-t="heroT"></h1>
+    <p data-t="heroP"></p>
+    <div class="cta">
+      <a class="btn" href="#book" data-t="book"></a>
+      <a class="btn ghost" href="#menu" data-t="seeMenu"></a>
+    </div>
+  </div>
+</section>
+
+<section class="sec intro">
+  <div class="wrap">
+    <div class="logo-big"><img class="logo-img" alt="Ρογδιά καφενείον"></div>
+    <p class="big" data-t="intro"></p>
+  </div>
+</section>
+
+<section class="sec" id="spaces" style="padding-top:40px">
+  <div class="wrap" id="spacesList"></div>
+</section>
+
+<section class="sec menu-sec" id="menu">
+  <div class="wrap center">
+    <h2 class="sec-title" data-t="navMenu"></h2>
+    <p class="sec-sub" data-t="menuSub"></p>
+  </div>
+  <div class="wrap">
+    <div class="tabs" id="tabs"></div>
+    <div class="menu-list" id="menuList"></div>
+    <p class="menu-note" data-t="vat"></p>
+  </div>
+</section>
+
+<section class="sec book" id="book">
+  <div class="wrap">
+    <h2 class="sec-title" data-t="bookT"></h2>
+    <p class="sec-sub" style="margin:10px auto 0" data-t="bookP"></p>
+    <div class="cta" id="bookBtns"></div>
+    <p class="num" id="bookNum"></p>
+  </div>
+</section>
+
+<section class="sec" id="location">
+  <div class="wrap loc">
+    <div>
+      <h2 class="sec-title" data-t="locT"></h2>
+      <address id="addr"></address>
+      <div class="hours" id="hours"></div>
+      <a class="btn outline" id="mapsBtn" target="_blank" rel="noopener" data-t="directions"></a>
+    </div>
+    <div class="ph" id="locPh"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="flogo"><img class="logo-img" alt="Ρογδιά καφενείον"></div>
+  <div id="footAddr"></div>
+  <div class="social" id="social"></div>
+  <small>© <span id="yr"></span> <span class="site-name"></span></small>
+</footer>
+
+<script>
+const FLAGS = { el:"ΕΛ", en:"EN", de:"DE", fr:"FR", it:"IT" };
+const GLOBE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>';
+const IG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>';
+const t = (o, l) => (o && (o[l] || o[SITE.defaultLang] || o.en)) || "";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+const fmt = p => p.toFixed(2).replace(".", ",") + " " + SITE.currency;
+const photo = p => p.src ? `<img src="${esc(p.src)}" alt="${esc(p.label)}" loading="lazy">` : `<span class="lbl">${esc(p.label)}</span>`;
+const $ = id => document.getElementById(id);
+let lang, activeCat = MENU[0].id;
+
+function pickLang(){
+  let saved = null;
+  try { saved = localStorage.getItem("lang"); } catch(e){}
+  const fromUrl = new URLSearchParams(location.search).get("lang");
+  for (const c of [fromUrl, saved, (navigator.language||"").slice(0,2)])
+    if (SITE.languages.includes(c)) return c;
+  return SITE.defaultLang;
+}
+
+function renderMenu(){
+  $("tabs").innerHTML = MENU.map(c =>
+    `<button class="${c.id===activeCat?"active":""}" onclick="setCat('${c.id}')">${esc(t(c.title, lang))}</button>`).join("");
+  const cat = MENU.find(c => c.id === activeCat);
+  $("menuList").innerHTML = cat.items.map(i => `
+    <div class="mi">
+      <div>
+        <div class="n">${esc(t(i.name, lang))}</div>
+        ${i.desc ? `<div class="d">${esc(t(i.desc, lang))}</div>` : ""}
+        ${i.tags ? i.tags.map(g => `<span class="tag">${esc(t(TAGS[g], lang))}</span>`).join("") : ""}
+      </div>
+      <div class="p">${fmt(i.price)}</div>
+    </div>`).join("");
+}
+
+function render(){
+  document.documentElement.lang = lang;
+  document.querySelectorAll(".site-name").forEach(e => e.textContent = SITE.name);
+  document.querySelectorAll(".logo-img").forEach(e => e.src = SITE.logo);
+  document.querySelectorAll("[data-t]").forEach(e => e.textContent = t(UI[e.dataset.t], lang));
+  const tel = "+30" + SITE.phone.replace(/\s/g, "");
+  $("topPhone").textContent = "☎ " + SITE.phone; $("topPhone").href = "tel:" + tel;
+
+  $("langs").setAttribute("aria-label", t(UI.langLbl, lang));
+  $("langs").innerHTML = GLOBE + SITE.languages.map(l =>
+    `<button class="${l===lang?"active":""}" aria-pressed="${l===lang}" onclick="setLang('${l}')">${FLAGS[l]||l.toUpperCase()}</button>`).join("");
+
+  $("heroPh").innerHTML = photo(SITE.hero);
+  $("locPh").innerHTML = photo(SITE.locationPhoto);
+
+  $("spacesList").innerHTML = SPACES.map((s, i) => `
+    <div class="space ${i % 2 ? "rev" : ""}">
+      <div class="strip">${s.photos.map(p => `<div class="ph">${photo(p)}</div>`).join("")}</div>
+      <div class="space-txt">
+        <span class="time">${esc(t(s.time, lang))}</span>
+        <h3>${esc(t(s.title, lang))}</h3>
+        <p>${esc(t(s.text, lang))}</p>
+      </div>
+    </div>`).join("");
+
+  renderMenu();
+
+  $("bookBtns").innerHTML =
+    `<a class="btn" href="tel:${tel}">${esc(t(UI.call, lang))}</a>` +
+    (SITE.whatsapp ? `<a class="btn" href="https://wa.me/${SITE.whatsapp}" target="_blank" rel="noopener">${esc(t(UI.wa, lang))}</a>` : "");
+  $("bookNum").textContent = SITE.phone;
+
+  $("addr").textContent = t(SITE.address, lang);
+  $("hours").innerHTML = `<div><strong>${esc(t(UI.hoursT, lang))}</strong><span></span></div>` +
+    SITE.hours.map(h => `<div><span>${esc(t(h.d, lang))}</span><span>${h.h}</span></div>`).join("");
+  $("mapsBtn").href = SITE.mapsUrl;
+
+  $("footAddr").textContent = t(SITE.address, lang) + " · " + SITE.phone;
+  $("social").innerHTML = SITE.instagram ? `<a href="${SITE.instagram}" target="_blank" rel="noopener">${IG}@rogdia_</a>` : "";
+  $("yr").textContent = new Date().getFullYear();
+  document.title = SITE.name + " — " + t(UI.eyebrow, lang);
+}
+
+function setLang(l){ lang = l; try { localStorage.setItem("lang", l); } catch(e){} render(); }
+function setCat(id){ activeCat = id; renderMenu(); }
+
+lang = pickLang();
+render();
+</script>
+</body>
+</html>
